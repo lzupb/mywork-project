@@ -1,0 +1,135 @@
+@font-face {
+  font-family: 'Varela Round';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Varela Round'), local('VarelaRound-Regular'), url(../fonts/APH4jr0uSos5wiut5cpjrugdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+.nav-list-cus{
+  text-align: left;
+  list-style:none;
+}
+
+.nav-list-cus a{
+  text-decoration:none;
+  transition:color 0.3s ease-out;
+  color:inherit;
+}
+
+.nav-list-cus li{
+  position:relative;
+  display:inline-block;
+  margin:5px;
+  letter-spacing:-1px;
+}
+
+
+.download:after,
+.download:before,
+.download a:after,
+.download a:before{
+  background-color:#CEDD3E;
+}
+
+.download:hover{
+  color:#CEDD3E
+}
+
+.features:after,
+.features:before,
+.features a:after,
+.features a:before{
+  background-color:#F27132;
+}
+
+.features:hover{
+  color:#F27132;
+}
+
+.method:after,
+.method:before,
+.method a:after,
+.method a:before{
+  background-color:#85C3E9;
+}
+
+.method:hover{
+  color:#85C3E9;
+}
+
+.purchase:after,
+.purchase:before,
+.purchase a:after,
+.purchase a:before{
+  background-color:#FDBE2A;
+}
+
+.purchase:hover{
+  color:#FDBE2A;
+}
+
+.nav-list-cus li:after,
+.nav-list-cus li:before,
+.nav-list-cus  a:before,
+.nav-list-cus  a:after{
+  position:absolute;
+  content:'';
+  border-radius:4px;
+}
+
+.nav-list-cus li:after,
+.nav-list-cus li:before{
+  bottom:-4px;
+  height:4px;
+}
+
+.nav-list-cus li:not(.selected):before{
+  left:0;
+  right:-2px;
+}
+
+.nav-list-cus li.selected:after{
+  left:0;
+  right:39px;
+}
+
+.nav-list-cus li.selected:before{
+  right:-2px;
+  width:13px;
+}
+
+
+.nav-list-cus .selected a:before{
+  height:22px;
+  width:4px;
+  bottom:-22px;
+  right:7px;
+}
+
+.nav-list-cus .selected a:after{
+  height:4px;
+  width:40px;
+  bottom:-13px;
+  right:5px;
+  transform:rotate(30deg);
+}
+
+
+.wrapper{
+  color: #ffffff;
+  font: normal 15px Arial, Helvetica, sans-serif,"黑体" ;
+  zoom:1;
+  margin:0 auto;
+  margin-left: 20px;
+  font-family: 'Varela Round', sans-serif;
+  text-align: left;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+.wrapper .red{
+  color:#F27132;
+}
+.nav >
+li:hover .dropdown-menu {display: block;}
