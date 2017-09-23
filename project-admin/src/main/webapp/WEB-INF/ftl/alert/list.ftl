@@ -24,9 +24,9 @@
             <ul class="breadcrumb" style="margin-top: 11px">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="<@spring.url '/'/>">通用人脸识别闸机系统</a>
+                    <a href="<@spring.url '/'/>">SBJK系统</a>
                 </li>
-                <li class="active">字典管理列表</li>
+                <li class="active">告警列表</li>
             </ul><!-- /.breadcrumb -->
         </div>
 
@@ -51,28 +51,35 @@
                                             <div class="col-lg-3">
                                                 <div class="input-group">
                                                   <span class="input-group-addon">
-                                                      字典名
+                                                      port_num
                                                   </span>
-                                                    <input name="dictKey" type="text" class="form-control search-form-ipt">
+                                                    <input name="port_num" type="text" class="form-control search-form-ipt">
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="input-group">
                                                   <span class="input-group-addon">
-                                                      字典值
+                                                      ne_label
                                                   </span>
-                                                    <input name="dictValue" type="text" class="form-control search-form-ipt">
+                                                    <input name="ne_label" type="text" class="form-control search-form-ipt">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-6">
                                                 <div class="input-group">
-                                                     <span class="input-group-addon">
-                                                      字典类型
-                                                     </span>
-                                                    <select name="dictType" class="chosen-select search-form-ipt"  data-placeholder="Choose a State...">
-                                                        <option value="">Choose a State...</option>
-
-                                                    </select>
+                                                  <span class="input-group-addon">
+                                                      event_time
+                                                  </span>
+                                                    <span class="display:inline-block">
+                                                    <input style="height: 30px;max-width: 165px;"
+                                                           id="start_event_time"
+                                                           name="start_event_time" type="text"
+                                                           onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                                                         -
+                                                        <input style="height: 30px;max-width: 165px;"
+                                                               id="end_event_time"
+                                                               name="end_event_time" type="text"
+                                                               onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                                                        </span>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
@@ -109,7 +116,6 @@
     </div><!-- /.main-content -->
 
 
-    <input id="dictTypesJsonString" name="dictTypesJsonString" type="hidden" value='${dictTypesJsonString}'>
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>
@@ -122,8 +128,10 @@
 
 <script src="<@spring.url '/static/js/lib/moment.js' />"></script>
 <script src="<@spring.url '/static/assets/js/My97DatePicker/WdatePicker.js' />"></script>
+<script src="<@spring.url '/static/js/common/jquery.chosen.ajax.js' />"></script>
 <!-- buss js -->
-<script src="<@spring.url '/static/js/buss/dict/list.js'/>"></script>
+<script src="<@spring.url '/static/js/buss/alert/list.js'/>"></script>
+
 
 </body>
 </html>

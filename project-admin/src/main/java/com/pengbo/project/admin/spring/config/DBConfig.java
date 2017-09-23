@@ -44,12 +44,18 @@ public class DBConfig {
             }
         }
         return dataSource;
-		
+
 	}
 
     @Bean
     public JdbcTemplate getJdbcTemplate() {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+        dataSource.setUrl("jdbc:oracle:thin:@dm03-scan.bmcc.com.cn:8521:nmsd2");
+        dataSource.setUsername("alarmrs");
+        dataSource.setPassword("ZhGj#_2013");
+        dataSource.setMaxTotal(100);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         return jdbcTemplate;
     }
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface IConfDAO extends BaseRepository<ConfDB, Long> {
+public interface IConfDAO extends BaseRepository<ConfDB> {
 
     @Query("FROM ConfDB t WHERE t.key =:name")
     ConfDB find(@Param("name") String name);

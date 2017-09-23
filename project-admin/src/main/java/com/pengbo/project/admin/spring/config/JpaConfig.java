@@ -2,6 +2,7 @@ package com.pengbo.project.admin.spring.config;
 
 import com.pengbo.project.admin.jpa.repository.IConfDAO;
 import com.pengbo.project.admin.jpa.service.ServicePackage;
+import com.pengbo.project.admin.service.BussServicePackage;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigValue;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ import java.util.Map;
 @EnableTransactionManagement
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableJpaRepositories(basePackageClasses = { IConfDAO.class }, excludeFilters = { @ComponentScan.Filter(value = NoRepositoryBean.class) })
-@ComponentScan(basePackageClasses = { ServicePackage.class }, includeFilters = @ComponentScan.Filter(classes = { Service.class }))
+@ComponentScan(basePackageClasses = { ServicePackage.class, BussServicePackage.class}, includeFilters = @ComponentScan.Filter(classes = { Service.class }))
 public class JpaConfig implements TransactionManagementConfigurer {
 
 	private static final Logger LOGGER = LoggerFactory
