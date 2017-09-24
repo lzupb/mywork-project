@@ -26,8 +26,8 @@ public abstract class AbstractRestController extends AbstractController {
      *
      * @return
      */
-    protected RestResponse<RestResponse.EmptyObject> successResponse() {
-        return restResponse(SUCCESS_CODE, SUCCESS_Message, RestResponse.EmptyObject.INSTANCE);
+    protected RestResponse successResponse() {
+        return restResponse(SUCCESS_CODE, SUCCESS_Message, null);
     }
 
     /**
@@ -36,8 +36,8 @@ public abstract class AbstractRestController extends AbstractController {
      * @param message
      * @return
      */
-    protected RestResponse<RestResponse.EmptyObject> successResponse(String message) {
-        return restResponse(SUCCESS_CODE, message, RestResponse.EmptyObject.INSTANCE);
+    protected RestResponse successResponse(String message) {
+        return restResponse(SUCCESS_CODE, message, null);
     }
 
     /**

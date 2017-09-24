@@ -53,7 +53,8 @@
                                                   <span class="input-group-addon">
                                                       字典名
                                                   </span>
-                                                    <input name="dictKey" type="text" class="form-control search-form-ipt">
+                                                    <input name="dictKey" type="text"
+                                                           class="form-control search-form-ipt">
                                                 </div>
                                             </div>
                                             <div class="col-lg-3">
@@ -61,23 +62,15 @@
                                                   <span class="input-group-addon">
                                                       字典值
                                                   </span>
-                                                    <input name="dictValue" type="text" class="form-control search-form-ipt">
+                                                    <input name="dictValue" type="text"
+                                                           class="form-control search-form-ipt">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3">
-                                                <div class="input-group">
-                                                     <span class="input-group-addon">
-                                                      字典类型
-                                                     </span>
-                                                    <select name="dictType" class="chosen-select search-form-ipt"  data-placeholder="Choose a State...">
-                                                        <option value="">Choose a State...</option>
 
-                                                    </select>
-                                                </div>
-                                            </div>
                                             <div class="col-lg-3">
                                                 <div class="input-group">
-                                                    <button type="button" class="search-form-ipt search-form-btn btn btn-purple btn-sm">
+                                                    <button type="button"
+                                                            class="search-form-ipt search-form-btn btn btn-purple btn-sm">
                                                         Search
                                                         <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
                                                     </button>
@@ -108,8 +101,6 @@
         <!-- /.page-content -->
     </div><!-- /.main-content -->
 
-
-    <input id="dictTypesJsonString" name="dictTypesJsonString" type="hidden" value='${dictTypesJsonString}'>
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>

@@ -9,7 +9,7 @@ $('#submitForm').validateAce({
             data: $(f).serialize(),
             dataType: 'json',
             success: function (resp) {
-                if (resp.code && resp.code === 200) {
+                if (resp.code && resp.code === '200') {
                     bootbox.alert('保存成功', function () {
                         //                        location.href = Env.context + '/dict/list';
                         operCompleted('/dict/list');

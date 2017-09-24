@@ -48,22 +48,40 @@
                                 <div class="widget-body">
                                     <div class="widget-main-sm">
                                         <div class="row">
-                                            <div class="col-lg-3">
-                                                <div class="input-group">
-                                                  <span class="input-group-addon">
-                                                      port_num
-                                                  </span>
-                                                    <input name="port_num" type="text" class="form-control search-form-ipt">
-                                                </div>
-                                            </div>
+
                                             <div class="col-lg-3">
                                                 <div class="input-group">
                                                   <span class="input-group-addon">
                                                       ne_label
                                                   </span>
-                                                    <input name="ne_label" type="text" class="form-control search-form-ipt">
+                                                    <input name="ne_label" type="text"
+                                                           class="form-control search-form-ipt">
                                                 </div>
                                             </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="input-group">
+                                                  <span class="input-group-addon">
+                                                      object_class
+                                                  </span>
+                                                    <input name="object_class" type="text"
+                                                           class="form-control search-form-ipt">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3">
+                                                <div class="input-group">
+                                                  <span class="input-group-addon">
+                                                      cancel_time为空
+                                                  </span>
+                                                    <div class="col-sm-4">
+                                                        <input value="true" name="cancel_time_is_null" type="checkbox"
+                                                               class="ace">
+                                                        <span class="lbl"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="col-lg-6">
                                                 <div class="input-group">
                                                   <span class="input-group-addon">
@@ -73,7 +91,7 @@
                                                     <input style="height: 30px;max-width: 165px;"
                                                            id="start_event_time"
                                                            name="start_event_time" type="text"
-                                                           onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                                                           onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
                                                          -
                                                         <input style="height: 30px;max-width: 165px;"
                                                                id="end_event_time"
@@ -82,9 +100,30 @@
                                                         </span>
                                                 </div>
                                             </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="input-group">
+                                                  <span class="input-group-addon">
+                                                      cancel_time
+                                                  </span>
+                                                    <span class="display:inline-block">
+                                                    <input style="height: 30px;max-width: 165px;"
+                                                           id="start_cancel_time"
+                                                           name="start_cancel_time" type="text"
+                                                           onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                                                         -
+                                                        <input style="height: 30px;max-width: 165px;"
+                                                               id="end_cancel_time"
+                                                               name="end_cancel_time" type="text"
+                                                               onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                                                        </span>
+                                                </div>
+                                            </div>
+
                                             <div class="col-lg-3">
                                                 <div class="input-group">
-                                                    <button type="button" class="search-form-ipt search-form-btn btn btn-purple btn-sm">
+                                                    <button type="button"
+                                                            class="search-form-ipt search-form-btn btn btn-purple btn-sm">
                                                         Search
                                                         <i class="ace-icon fa fa-search icon-on-right bigger-110"></i>
                                                     </button>

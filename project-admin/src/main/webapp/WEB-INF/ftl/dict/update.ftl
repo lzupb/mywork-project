@@ -63,19 +63,6 @@
                             <div class="space-4"></div>
 
                             <div class="form-group">
-                                <label for="form-field-1" class="col-sm-3 control-label no-padding-right"><i class="required-mark"></i>字典类型 </label>
-                                <div class="col-sm-4">
-                                    <select required name="dictType" class="chosen-select"  data-placeholder="Choose a State...">
-                                        <option value="">Choose a State...</option>
-                                    <#list dictTypes as d >
-                                        <option <#if bean.dictType?? && bean.dictType==d.code>selected</#if> value="${d.code}">${d.desc}</option>
-                                    </#list>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="space-4"></div>
-
-                            <div class="form-group">
                                 <label for="form-field-1" class="col-sm-3 control-label no-padding-right"> 启用字典 </label>
                                 <div class="col-sm-4">
                                         <input value="true" name="enable" <#if (bean.enable)??&&(bean.enable)>checked="checked" </#if> type="checkbox" class="ace">

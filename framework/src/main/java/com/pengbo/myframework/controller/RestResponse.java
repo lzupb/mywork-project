@@ -104,13 +104,5 @@ public class RestResponse<T> {
         return this;
     }
 
-    public static class EmptyObject {
 
-        public static final EmptyObject INSTANCE = new EmptyObject();
-
-        @Override
-        public String toString() {
-            return "";
-        }
-    }
 }

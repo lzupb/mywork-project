@@ -19,16 +19,16 @@ import java.util.Map;
 @Configuration
 @Import({JpaConfig.class})
 public class DBConfig {
-	
+
     private static final Logger LOGGER = LoggerFactory.getLogger(DBConfig.class);
 
-	
-	@Autowired
-	private Config config;
-	
-	@Bean
-	public DataSource dataSource() {
-		Config db = config.getConfig("db");
+
+    @Autowired
+    private Config config;
+
+    @Bean
+    public DataSource dataSource() {
+        Config db = config.getConfig("db");
         BasicDataSource dataSource = new BasicDataSource();
         for (Map.Entry<String, ConfigValue> entry : db.entrySet()) {
             try {
@@ -45,18 +45,31 @@ public class DBConfig {
         }
         return dataSource;
 
-	}
+    }
 
     @Bean
     public JdbcTemplate getJdbcTemplate() {
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-        dataSource.setUrl("jdbc:oracle:thin:@dm03-scan.bmcc.com.cn:8521:nmsd2");
-        dataSource.setUsername("alarmrs");
-        dataSource.setPassword("ZhGj#_2013");
-        dataSource.setMaxTotal(100);
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        if (1 == 2) {
+            BasicDataSource dataSource = new BasicDataSource();
+            dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+            dataSource.setUrl("jdbc:oracle:thin:@dm03-scan.bmcc.com.cn:8521:nmsd2");
+            dataSource.setUsername("alarmrs");
+            dataSource.setPassword("ZhGj#_2013");
+            dataSource.setMaxTotal(100);
+            jdbcTemplate.setDataSource(dataSource);
+        } else {
+            jdbcTemplate.setDataSource(dataSource());
+        }
+
+
+//        String oracleDbConfig = dictService.getValue("db.oracle.config");
+//        if (Nulls.isNotEmpty(oracleDbConfig)) {
+//            JsonParser jsonParser = new JsonParser();
+//            JsonObject jsonObject = (JsonObject) jsonParser.parse(oracleDbConfig);
+//        }
         return jdbcTemplate;
+
     }
 
 }

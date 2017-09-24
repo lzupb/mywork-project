@@ -19,9 +19,11 @@ public class DictBussService extends BaseBussService<DictVO, DictDB> {
     }
 
     public boolean updateDict(DictVO dictVO) {
-        DictDB dictDO = dictService.findOne(dictVO.getId());
-        if (dictDO == null) {
-            return false;
+        DictDB dictDO = null;
+        if (dictVO.getId() != null) {
+            dictDO = dictService.findOne(dictVO.getId());
+        } else {
+            dictDO = new DictDB();
         }
         dictDO.setDictKey(dictVO.getDictKey());
         dictDO.setDictValue(dictVO.getDictValue());

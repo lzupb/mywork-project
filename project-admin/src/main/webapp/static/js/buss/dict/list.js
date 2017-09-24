@@ -14,31 +14,21 @@ $(function () {
     // 启用jqGrid自适应大小
     enableJqGridAutoResize(gridSelector);
 
-    var dictTypeMap = $.parseJSON($('#dictTypesJsonString').val());
     jQuery(gridSelector).jqGrid({
         url: listJsonUrl,
         datatype: 'json',
         height: 'auto',
         mtype: 'POST',
-        colNames: ['字典名', '字典值', '字典类型', '启用状态', '创建时间', '修改时间', '描述信息', '操作'],
+        colNames: ['字典名', '字典值', '启用状态', '创建时间', '修改时间', '描述信息', '操作'],
         colModel: [
             {name: 'dictKey', index: 'dictKey'},
             {name: 'dictValue', index: 'dictValue'},
             {
-                name: 'dictType', index: 'dictType', formatter: function (value) {
-                    var rt = dictTypeMap[value];
-                    if (rt) {
-                        return rt;
-                    }
-                    return '';
-                }
-            },
-            {
-                name: 'enable', index: 'createdDate', align: 'right', formatter: function (value) {
+                name: 'enable', index: 'enable', align: 'right', formatter: function (value) {
                     return value === true ? '启用' : '未启用';
                 }
             },
-            {name: 'createDate', index: 'createDate'},
+            {name: 'createdDate', index: 'createdDate'},
             {name: 'lastModifiedDate', index: 'lastModifiedDate'},
             {name: 'description', index: 'description'},
             {

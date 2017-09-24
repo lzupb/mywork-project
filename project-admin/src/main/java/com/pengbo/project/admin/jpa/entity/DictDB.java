@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 
 /**
  * 字典
+ *
  * @author sunchangqing01
  */
 @Entity
@@ -27,11 +28,6 @@ public class DictDB extends DefaultDateDO {
     @Column(nullable = false, length = 255)
     private String dictValue;
 
-    /**
-     * 字典值的类型
-     */
-    @Column(nullable = false, length = 255)
-    private String dictType;
 
     /**
      * 是否启用
@@ -61,13 +57,6 @@ public class DictDB extends DefaultDateDO {
         this.dictValue = dictValue;
     }
 
-    public String getDictType() {
-        return dictType;
-    }
-
-    public void setDictType(String dictType) {
-        this.dictType = dictType;
-    }
 
     public Boolean getEnable() {
         return enable;
@@ -92,7 +81,6 @@ public class DictDB extends DefaultDateDO {
     public DictDB(Builder builder) {
         dictKey = builder.key;
         dictValue = builder.value;
-        dictType = builder.type;
         enable = builder.enable;
         description = builder.desc;
     }

@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Date;
-import java.util.List;
 
 /**
  * 字典服务
@@ -50,15 +49,10 @@ public class DictService extends BaseService<DictDB> {
         if (StringUtils.isNotBlank(vo.getDictValue())) {
             builder.and(qObj.dictValue.contains(vo.getDictValue()));
         }
-        if (StringUtils.isNotBlank(vo.getDictType())) {
-            builder.and(qObj.dictType.eq(vo.getDictType()));
-        }
+
         return builder;
     }
 
-    public List<DictDB> findByDictType(String dictType) {
-        return dictRepository.findByDictType(dictType);
-    }
 
     public String getValue(String key) {
         DictDB dictDB = get(key);
@@ -68,10 +62,6 @@ public class DictService extends BaseService<DictDB> {
         return null;
     }
 
-    @Cacheable("getDictValueFromCache")
-    public DictDB findByDictKeyAndDictType(String dictKey, String dictType) {
-        return dictRepository.findByDictKeyAndDictType(dictKey, dictType);
-    }
 
     @Cacheable("getDictValueFromCache")
     public String getDictValueFromCache(String key) {
@@ -111,7 +101,6 @@ public class DictService extends BaseService<DictDB> {
 
         final DictDB dict = new DictDB();
         dict.setDictKey(key);
-        dict.setDictType(type);
         dict.setCreatedDate(new Date());
         dict.setDictValue(value);
         dict.setLastModifiedDate(new Date());

@@ -1,11 +1,9 @@
 package com.pengbo.project.admin.vo.alert;
 
-import java.util.Date;
-
 /**
  * Created by pengbo01 on 2017/9/23.
  */
-public class AlertInfoVO {
+public class AlertQueryVO {
 
     private Integer port_num;
 
@@ -19,13 +17,19 @@ public class AlertInfoVO {
 
     private String alarm_title_text;
 
-    private Date event_time;
+    private String start_event_time;
 
-    private Date cancel_time;
+    private String end_event_time;
+
+    private String start_cancel_time;
+
+    private String end_cancel_time;
 
     private String vendor_name;
 
     private String REGION_NAME;
+
+    private boolean cancel_time_is_null;
 
     public Integer getPort_num() {
         return port_num;
@@ -75,21 +79,6 @@ public class AlertInfoVO {
         this.alarm_title_text = alarm_title_text;
     }
 
-    public Date getEvent_time() {
-        return event_time;
-    }
-
-    public void setEvent_time(Date event_time) {
-        this.event_time = event_time;
-    }
-
-    public Date getCancel_time() {
-        return cancel_time;
-    }
-
-    public void setCancel_time(Date cancel_time) {
-        this.cancel_time = cancel_time;
-    }
 
     public String getVendor_name() {
         return vendor_name;
@@ -107,19 +96,43 @@ public class AlertInfoVO {
         this.REGION_NAME = REGION_NAME;
     }
 
-    @Override
-    public String toString() {
-        return "AlertInfoVO{" +
-                "port_num=" + port_num +
-                ", object_class='" + object_class + '\'' +
-                ", int_id=" + int_id +
-                ", ne_label='" + ne_label + '\'' +
-                ", probable_cause='" + probable_cause + '\'' +
-                ", alarm_title_text='" + alarm_title_text + '\'' +
-                ", event_time=" + event_time +
-                ", cancel_time=" + cancel_time +
-                ", vendor_name='" + vendor_name + '\'' +
-                ", REGION_NAME='" + REGION_NAME + '\'' +
-                '}';
+    public boolean isCancel_time_is_null() {
+        return cancel_time_is_null;
+    }
+
+    public void setCancel_time_is_null(boolean cancel_time_is_null) {
+        this.cancel_time_is_null = cancel_time_is_null;
+    }
+
+    public String getStart_event_time() {
+        return start_event_time;
+    }
+
+    public void setStart_event_time(String start_event_time) {
+        this.start_event_time = start_event_time;
+    }
+
+    public String getEnd_event_time() {
+        return end_event_time;
+    }
+
+    public void setEnd_event_time(String end_event_time) {
+        this.end_event_time = end_event_time;
+    }
+
+    public String getStart_cancel_time() {
+        return start_cancel_time;
+    }
+
+    public void setStart_cancel_time(String start_cancel_time) {
+        this.start_cancel_time = start_cancel_time;
+    }
+
+    public String getEnd_cancel_time() {
+        return end_cancel_time;
+    }
+
+    public void setEnd_cancel_time(String end_cancel_time) {
+        this.end_cancel_time = end_cancel_time;
     }
 }
