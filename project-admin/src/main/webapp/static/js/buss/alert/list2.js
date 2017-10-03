@@ -21,7 +21,7 @@ $(function () {
         height: 'auto',
         mtype: 'POST',
         colNames: ['id', 'PORT_NUM', 'OBJECT_CLASS', 'INT_ID', 'NE_LABEL', 'PROBABLE_CAUSE', 'ALARM_TITLE_TEXT',
-            'EVENT_TIME', 'CANCEL_TIME', 'VENDOR_NAME', 'REGION_NAME', '操作'],
+            'EVENT_TIME', 'CANCEL_TIME', 'LOCAL_CANCEL_TIME', 'VENDOR_NAME', 'REGION_NAME', '操作'],
         colModel: [
             {name: 'id', index: 'id', hidden: true},
             {name: 'portNum', index: 'portNum'},
@@ -32,6 +32,7 @@ $(function () {
             {name: 'alarmTitleText', index: 'alarmTitleText'},
             {name: 'eventTime', index: 'eventTime'},
             {name: 'cancelTime', index: 'cancelTime'},
+            {name: 'localCancelTime', index: 'localCancelTime'},
             {name: 'vendorName', index: 'vendorName'},
             {name: 'regionName', index: 'regionName'},
             {

@@ -115,8 +115,8 @@ public class AlertController extends AbstractRestController {
             }
         }
 
-        Page<TfaAlarmAct> page = alertBussService.searchByCondition(builder, pageable);
-//        Page<AlarmVO> page = alertBussService.searchAlarmVO(builder, pageable);
+//        Page<TfaAlarmAct> page = alertBussService.searchByCondition(builder, pageable);
+        Page<AlarmVO> page = alertBussService.searchAlarmVO(builder, pageable);
         return successPageResponse(page);
     }
 

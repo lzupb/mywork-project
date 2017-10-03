@@ -1,5 +1,6 @@
 package com.pengbo.project.admin.service;
 
+import com.google.common.collect.Lists;
 import com.pengbo.myframework.util.BeanAssistUtils;
 import com.pengbo.myframework.util.Nulls;
 import com.pengbo.project.admin.jpa.entity.QTfaAlarmAct;
@@ -22,8 +23,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by pengbo01 on 2017/9/23.
@@ -98,19 +101,33 @@ public class AlertBussService {
     }
 
     public Page<AlarmVO> searchAlarmVO(Predicate condition, Pageable pageable) {
-        List<Tuple> list = jpaQueryFactory.select(
-                tfaAlarmAct, tfaAlertLocal)
-                .from(tfaAlarmAct, tfaAlertLocal)
-                .rightJoin(tfaAlertLocal).on(tfaAlarmAct.id.eq(tfaAlertLocal.tfaAlarmId))
+        List<TfaAlarmAct> list = jpaQueryFactory.select(
+                tfaAlarmAct)
+                .from(tfaAlarmAct)
                 .where(condition)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
         if (Nulls.isNotEmpty(list)) {
+            List<Long> alarmIdList = new ArrayList<>();
+            list.forEach(tfaAlarmAct1 -> {
+                alarmIdList.add(tfaAlarmAct1.getId());
+            });
+            List<TfaAlertLocal> localList = jpaQueryFactory
+                    .select(tfaAlertLocal)
+                    .from(tfaAlertLocal)
+                    .where(tfaAlertLocal.tfaAlarmId.in(alarmIdList)).fetch();
+            Map<Long, TfaAlertLocal> localMap = new HashMap<>();
+            if (Nulls.isNotEmpty(localList)) {
+                localList.forEach(local -> {
+                    localMap.put(local.getTfaAlarmId(), local);
+                });
+
+            }
             List<AlarmVO> alarmVOList = new ArrayList<>();
-            list.forEach(tuple -> {
-                AlarmVO vo = convert(tuple.get(tfaAlarmAct));
-                TfaAlertLocal local = tuple.get(tfaAlertLocal);
+            list.forEach(tfaAlarmAct -> {
+                AlarmVO vo = convert(tfaAlarmAct);
+                TfaAlertLocal local = localMap.get(tfaAlarmAct.getId());
                 if (null != local) {
                     vo.setCancelTime(local.getCancelTime());
                     vo.setLocalCancelTime(local.getCancelTime());

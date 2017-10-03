@@ -4,6 +4,7 @@ import com.pengbo.myframework.entity.DefaultDateDO;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
 
@@ -20,6 +21,7 @@ public class TfaAlertLocal extends DefaultDateDO {
     @Column(name = "cancel_time", nullable = false)
     private Date cancelTime;
 
+
     public Long getTfaAlarmId() {
         return tfaAlarmId;
     }
@@ -35,4 +37,5 @@ public class TfaAlertLocal extends DefaultDateDO {
     public void setCancelTime(Date cancelTime) {
         this.cancelTime = cancelTime;
     }
+
 }
