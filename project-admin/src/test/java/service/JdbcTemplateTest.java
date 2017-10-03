@@ -19,10 +19,12 @@ public class JdbcTemplateTest extends BaseServiceTest {
 
     @Test
     public void testQuery() {
-
-        String sql = "select * from my_dictdb where created_date >= ?";
-
+        String sql = "select * from dual";
         List list = jdbcTemplate.query(sql, new Object[]{new Date()}, new ColumnMapRowMapper());
         System.out.println(list.size());
+
+//        String sql2 = "select * from my_dictdb where created_date >= ?";
+//        List list2 = jdbcTemplate.query(sql2, new Object[]{new Date()}, new ColumnMapRowMapper());
+//        System.out.println(list2.size());
     }
 }

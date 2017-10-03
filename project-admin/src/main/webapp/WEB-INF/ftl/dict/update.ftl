@@ -25,7 +25,7 @@
             <ul class="breadcrumb" style="margin-top: 11px">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="<@spring.url '/'/>">通用人脸识别闸机系统</a>
+                    <a href="<@spring.url '/'/>">SBJK系统</a>
 
                 </li>
                 <li class="active">字典添加</li>

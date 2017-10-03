@@ -1,5 +1,7 @@
 package com.pengbo.project.admin.vo.alert;
 
+import java.util.Date;
+
 /**
  * Created by pengbo01 on 2017/9/23.
  */
@@ -17,13 +19,13 @@ public class AlertQueryVO {
 
     private String alarm_title_text;
 
-    private String start_event_time;
+    private Date start_event_time;
 
-    private String end_event_time;
+    private Date end_event_time;
 
-    private String start_cancel_time;
+    private Date start_cancel_time;
 
-    private String end_cancel_time;
+    private Date end_cancel_time;
 
     private String vendor_name;
 
@@ -104,35 +106,35 @@ public class AlertQueryVO {
         this.cancel_time_is_null = cancel_time_is_null;
     }
 
-    public String getStart_event_time() {
+    public Date getStart_event_time() {
         return start_event_time;
     }
 
-    public void setStart_event_time(String start_event_time) {
+    public void setStart_event_time(Date start_event_time) {
         this.start_event_time = start_event_time;
     }
 
-    public String getEnd_event_time() {
+    public Date getEnd_event_time() {
         return end_event_time;
     }
 
-    public void setEnd_event_time(String end_event_time) {
+    public void setEnd_event_time(Date end_event_time) {
         this.end_event_time = end_event_time;
     }
 
-    public String getStart_cancel_time() {
+    public Date getStart_cancel_time() {
         return start_cancel_time;
     }
 
-    public void setStart_cancel_time(String start_cancel_time) {
+    public void setStart_cancel_time(Date start_cancel_time) {
         this.start_cancel_time = start_cancel_time;
     }
 
-    public String getEnd_cancel_time() {
+    public Date getEnd_cancel_time() {
         return end_cancel_time;
     }
 
-    public void setEnd_cancel_time(String end_cancel_time) {
+    public void setEnd_cancel_time(Date end_cancel_time) {
         this.end_cancel_time = end_cancel_time;
     }
 }

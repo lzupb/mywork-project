@@ -5,22 +5,22 @@ $('#submitForm').validateAce({
     submitHandler: function (f) {
         $.ajax({
             type: 'post',
-            url: Env.context + '/dict/updateData.json',
+            url: Env.context + '/alert/updateData.json',
             data: $(f).serialize(),
             dataType: 'json',
             success: function (resp) {
-                if (resp.code && resp.code === 200) {
-                    bootbox.alert('保存成功', function () {
+                if (resp.code && resp.code === '200') {
+                    bootbox.alert('上报成功', function () {
                         //                        location.href = Env.context + '/dict/list';
-                        operCompleted('/dict/list');
+                        operCompleted('/alert/list');
                     });
 
                 } else {
-                    bootbox.alert('保存失败:' + resp.msg);
+                    bootbox.alert('上报失败:' + resp.msg);
                 }
             },
             error: function (resp, errq) {
-                bootbox.alert('保存失败');
+                bootbox.alert('上报失败');
             }
         });
     }
@@ -31,5 +31,5 @@ $('#submitBtn').click(function () {
 });
 
 $('#cancelBtn').click(function () {
-    undo('/dict/list');
+    undo('/alert/list');
 });

@@ -3,6 +3,7 @@ package com.pengbo.project.admin.spring.config;
 import com.pengbo.project.admin.jpa.repository.IConfDAO;
 import com.pengbo.project.admin.jpa.service.ServicePackage;
 import com.pengbo.project.admin.service.BussServicePackage;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigValue;
 import org.slf4j.Logger;
@@ -21,7 +22,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -54,6 +57,11 @@ public class JpaConfig implements TransactionManagementConfigurer {
 	@Bean(name = "transactionManager")
 	public PlatformTransactionManager annotationDrivenTransactionManager() {
 		return new JpaTransactionManager(entityManagerFactory());
+	}
+
+	@Bean
+	public JPAQueryFactory jpaQueryFactory() {
+		return new JPAQueryFactory(entityManagerFactory().createEntityManager());
 	}
 
 	@Bean

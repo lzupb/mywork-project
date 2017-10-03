@@ -79,6 +79,10 @@
                                                         Reset
                                                         <i class="ace-icon fa fa-undo icon-on-right bigger-110"></i>
                                                     </button>
+                                                    <span class="line-gap-10"></span>
+                                                    <button id="test_dialog" type="button">
+                                                        测试弹窗
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>

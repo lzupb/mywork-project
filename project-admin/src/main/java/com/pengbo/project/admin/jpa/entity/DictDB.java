@@ -89,7 +89,6 @@ public class DictDB extends DefaultDateDO {
         private final String key;
         private final String value;
 
-        private String type = "";
         private String desc = "";
         private boolean enable = true;
 
@@ -99,7 +98,6 @@ public class DictDB extends DefaultDateDO {
         }
 
         public Builder type(String type) {
-            this.type = type;
             return this;
         }
 

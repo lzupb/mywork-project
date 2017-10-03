@@ -82,6 +82,11 @@
                                                 </div>
                                             </div>
 
+                                        </div>
+                                        <div class="space-2"></div>
+
+                                        <div class="row">
+
                                             <div class="col-lg-6">
                                                 <div class="input-group">
                                                   <span class="input-group-addon">
@@ -120,7 +125,11 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-3">
+                                        </div>
+                                        <div class="space-2"></div>
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
                                                 <div class="input-group">
                                                     <button type="button"
                                                             class="search-form-ipt search-form-btn btn btn-purple btn-sm">
@@ -131,6 +140,10 @@
                                                     <button class="cancel-form-btn btn" type="reset">
                                                         Reset
                                                         <i class="ace-icon fa fa-undo icon-on-right bigger-110"></i>
+                                                    </button>
+                                                    <span class="line-gap-10"></span>
+                                                    <button id="batch_modify" type="button">
+                                                        批量上报
                                                     </button>
                                                 </div>
                                             </div>
@@ -158,9 +171,8 @@
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>
+
 </div><!-- /.main-container -->
-
-
 <!-- basic scripts -->
 <#include "../common/common-immediate.ftl" />
 <#include "../common/common-import-list.ftl" />
@@ -169,7 +181,7 @@
 <script src="<@spring.url '/static/assets/js/My97DatePicker/WdatePicker.js' />"></script>
 <script src="<@spring.url '/static/js/common/jquery.chosen.ajax.js' />"></script>
 <!-- buss js -->
-<script src="<@spring.url '/static/js/buss/alert/list.js'/>"></script>
+<script src="<@spring.url '/static/js/buss/alert/list2.js'/>"></script>
 
 
 </body>
