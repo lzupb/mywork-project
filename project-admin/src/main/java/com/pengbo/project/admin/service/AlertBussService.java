@@ -1,7 +1,9 @@
 package com.pengbo.project.admin.service;
 
-import com.ibm.mq.jms.MQQueue;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.pengbo.myframework.util.BeanAssistUtils;
+import com.pengbo.myframework.util.JsonUtils;
 import com.pengbo.myframework.util.Nulls;
 import com.pengbo.project.admin.jpa.entity.QTfaAlarmAct;
 import com.pengbo.project.admin.jpa.entity.QTfaAlertLocal;
@@ -13,6 +15,8 @@ import com.pengbo.project.admin.vo.BatchUpdateAlarmVO;
 import com.pengbo.project.admin.vo.alert.AlarmVO;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -22,8 +26,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.jms.Destination;
-import javax.jms.JMSException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,8 @@ import java.util.Map;
  */
 @Service
 public class AlertBussService {
+
+    private static final Logger logger = LoggerFactory.getLogger(AlertBussService.class);
 
     @Autowired
     private AlarmRepository alarmRepository;
@@ -102,14 +106,8 @@ public class AlertBussService {
         }
         local.setCancelTime(alarmVO.getCancelTime());
         alarmLocalRepository.save(local);
-        Destination destination = null;
-        try {
-            destination = new MQQueue("test.q");
-            jmsTemplate.convertAndSend(destination, "");
-        } catch (JMSException e) {
-            e.printStackTrace();
-        }
-
+        AlarmVO vo = convert(alarmRepository.findOne(alarmVO.getAlarmId()));
+        sendMQ(vo);
     }
 
     public Page<AlarmVO> searchAlarmVO(Predicate condition, Pageable pageable) {
@@ -165,7 +163,36 @@ public class AlertBussService {
         AlarmVO vo = new AlarmVO();
         BeanAssistUtils.copyProperties(tfaAlarmAct, vo);
         vo.setAlarmId(tfaAlarmAct.getId());
+        String myMsgserial = tfaAlarmAct.getMsgserial() + "1";
+        vo.setMsgSerial(new Long(myMsgserial));
+        vo.setAlarmUniqueId(tfaAlarmAct.getFp0() + "_"
+                + tfaAlarmAct.getFp1() + "_"
+                + tfaAlarmAct.getFp2() + "_"
+                + tfaAlarmAct.getFp3());
+        vo.setAlarmUniqueClearId(tfaAlarmAct.getCfp0() + "_"
+                + tfaAlarmAct.getCfp1() + "_"
+                + tfaAlarmAct.getCfp2() + "_"
+                + tfaAlarmAct.getCfp3());
+        vo.setAlarmStatus(0);
         return vo;
+    }
+
+    public void sendMQ(AlarmVO alarmVO) {
+        jmsTemplate.convertAndSend(generateMQMessage(alarmVO));
+    }
+
+    private String generateMQMessage(AlarmVO alarmVO) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<AlarmStart>").append("/r/n");
+        JsonObject jsonObject = (JsonObject) new JsonParser().parse(JsonUtils.object2Json(alarmVO));
+
+        jsonObject.entrySet().forEach(json -> {
+            sb.append(json.getKey()).append(":").append(json.getValue().getAsString());
+            sb.append("/r/n");
+        });
+        sb.append("<AlarmEnd>");
+        logger.info("mq message:{}", sb.toString());
+        return sb.toString();
     }
 
 }

@@ -1,11 +1,25 @@
 package com.pengbo.project.admin.vo.alert;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 /**
  * Created by pengbo01 on 2017/10/3.
  */
 public class AlarmVO {
+
+    @JsonProperty("MsgSerial")
+    private Long MsgSerial;
+
+    @JsonProperty("AlarmUniqueId")
+    private String alarmUniqueId;
+
+    @JsonProperty("AlarmUniqueClearId")
+    private String alarmUniqueClearId;
+
+    @JsonProperty("AlarmStatus")
+    private Integer alarmStatus = 0;
 
     private Long id;
 
@@ -23,8 +37,10 @@ public class AlarmVO {
 
     private String alarmTitleText;
 
+    @JsonProperty("EventTime")
     private Date eventTime;
 
+    @JsonProperty("CancelTime")
     private Date cancelTime;
 
     private String vendorName;
@@ -146,5 +162,37 @@ public class AlarmVO {
     public void setId(Long id) {
         this.id = id;
         this.alarmId = id;
+    }
+
+    public Long getMsgSerial() {
+        return MsgSerial;
+    }
+
+    public void setMsgSerial(Long msgSerial) {
+        MsgSerial = msgSerial;
+    }
+
+    public String getAlarmUniqueId() {
+        return alarmUniqueId;
+    }
+
+    public void setAlarmUniqueId(String alarmUniqueId) {
+        this.alarmUniqueId = alarmUniqueId;
+    }
+
+    public String getAlarmUniqueClearId() {
+        return alarmUniqueClearId;
+    }
+
+    public void setAlarmUniqueClearId(String alarmUniqueClearId) {
+        this.alarmUniqueClearId = alarmUniqueClearId;
+    }
+
+    public Integer getAlarmStatus() {
+        return alarmStatus;
+    }
+
+    public void setAlarmStatus(Integer alarmStatus) {
+        this.alarmStatus = alarmStatus;
     }
 }

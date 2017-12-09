@@ -1,5 +1,7 @@
 package service;
 
+import com.pengbo.project.admin.service.AlertBussService;
+import com.pengbo.project.admin.vo.alert.AlarmVO;
 import config.BaseServiceTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,13 @@ public class JmsTemplateTest extends BaseServiceTest {
     @Autowired
     private JmsTemplate jmsTemplate;
 
+    @Autowired
+    private AlertBussService alertBussService;
+
     @Test
     public void sendMessageTest() {
-        jmsTemplate.convertAndSend("my test");
+        AlarmVO alarmVO = alertBussService.findOne(1L);
+        alertBussService.sendMQ(alarmVO);
+//        jmsTemplate.convertAndSend("my test");
     }
 }
