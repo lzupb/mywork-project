@@ -1,6 +1,6 @@
 package com.pengbo.project.admin.service;
 
-import com.google.common.collect.Lists;
+import com.ibm.mq.jms.MQQueue;
 import com.pengbo.myframework.util.BeanAssistUtils;
 import com.pengbo.myframework.util.Nulls;
 import com.pengbo.project.admin.jpa.entity.QTfaAlarmAct;
@@ -11,7 +11,6 @@ import com.pengbo.project.admin.jpa.repository.AlarmLocalRepository;
 import com.pengbo.project.admin.jpa.repository.AlarmRepository;
 import com.pengbo.project.admin.vo.BatchUpdateAlarmVO;
 import com.pengbo.project.admin.vo.alert.AlarmVO;
-import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +19,15 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.ColumnMapRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.jms.Destination;
+import javax.jms.JMSException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Created by pengbo01 on 2017/9/23.
@@ -45,6 +46,9 @@ public class AlertBussService {
 
     @Autowired
     private JPAQueryFactory jpaQueryFactory;
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
 
     private QTfaAlarmAct tfaAlarmAct = QTfaAlarmAct.tfaAlarmAct;
 
@@ -98,6 +102,14 @@ public class AlertBussService {
         }
         local.setCancelTime(alarmVO.getCancelTime());
         alarmLocalRepository.save(local);
+        Destination destination = null;
+        try {
+            destination = new MQQueue("test.q");
+            jmsTemplate.convertAndSend(destination, "");
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public Page<AlarmVO> searchAlarmVO(Predicate condition, Pageable pageable) {
@@ -108,6 +120,13 @@ public class AlertBussService {
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
+        Long totalCount = jpaQueryFactory.select(
+                tfaAlarmAct)
+                .from(tfaAlarmAct)
+                .where(condition)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetchCount();
         if (Nulls.isNotEmpty(list)) {
             List<Long> alarmIdList = new ArrayList<>();
             list.forEach(tfaAlarmAct1 -> {
@@ -129,12 +148,14 @@ public class AlertBussService {
                 AlarmVO vo = convert(tfaAlarmAct);
                 TfaAlertLocal local = localMap.get(tfaAlarmAct.getId());
                 if (null != local) {
-                    vo.setCancelTime(local.getCancelTime());
+                    vo.setCancelTime(tfaAlarmAct.getCancelTime());
                     vo.setLocalCancelTime(local.getCancelTime());
                     vo.setLocalAlarmId(local.getId());
                 }
                 alarmVOList.add(vo);
             });
+            Page<AlarmVO> page = new PageImpl<AlarmVO>(alarmVOList, pageable, totalCount);
+            return page;
 
         }
         return null;

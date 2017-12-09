@@ -7,6 +7,8 @@ import java.util.Date;
  */
 public class AlarmVO {
 
+    private Long id;
+
     private Long alarmId;
 
     private Integer portNum;
@@ -135,5 +137,14 @@ public class AlarmVO {
 
     public void setLocalCancelTime(Date localCancelTime) {
         this.localCancelTime = localCancelTime;
+    }
+
+    public Long getId() {
+        return alarmId;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+        this.alarmId = id;
     }
 }
