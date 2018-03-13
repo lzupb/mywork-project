@@ -34,6 +34,10 @@ package com.pengbo.sample.javafx.brickbreaker;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
+import java.io.IOException;
 
 public final class Config {
 
@@ -42,7 +46,7 @@ public final class Config {
     // Screen info
     public static final int FIELD_BRICK_IN_ROW = 15;
 
-    public static final String IMAGE_DIR = "images/desktop/";
+    public static final String IMAGE_DIR = "/images/desktop/";
 
     public static final int WINDOW_BORDER = 3; // on desktop platform
     public static final int TITLE_BAR_HEIGHT = 19; // on desktop platform
@@ -165,9 +169,12 @@ public final class Config {
         return images;
     }
 
-    public static void initialize() {
+    public static void initialize() throws IOException {
         for (String imageName : IMAGES_NAMES) {
-            Image image = new Image(Config.class.getResourceAsStream(IMAGE_DIR+imageName));
+
+//            Image image = new Image(Config.class.getResourceAsStream(IMAGE_DIR+imageName));
+            Resource resource = new ClassPathResource(IMAGE_DIR+imageName);
+            Image image = new Image(resource.getInputStream());
             if (image.isError()) {
                 System.out.println("Image "+imageName+" not found");
             }

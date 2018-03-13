@@ -66,6 +66,11 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/top-sdk-1.0.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.4</version>
+        </dependency>
 
     </dependencies>
 
